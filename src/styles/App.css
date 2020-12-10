@@ -1,0 +1,32 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "roboto";
+}
+
+h1 {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+form {
+  margin-top: 2rem;
+}
+
+form button {
+  margin-top: 1.5rem;
+}
+
+.search-button {
+  margin-top: 0.5rem;
+}
+
+table,
+thead,
+tr,
+tbody,
+th,
+td {
+  text-align: center;
+}
