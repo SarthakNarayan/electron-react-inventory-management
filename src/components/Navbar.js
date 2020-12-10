@@ -5,7 +5,7 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
       <NavLink to="/" className="navbar-brand">
-        Inventory management
+        Inventory Mechanical Shop
       </NavLink>
 
       <button

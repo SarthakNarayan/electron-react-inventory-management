@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Select from "react-select";
 import SingleData from "./SingleData";
+import GenerateReport from "./GenerateReport";
 
 const db = window.require("electron").remote.getGlobal("database");
 
@@ -16,11 +17,20 @@ const InventoryList = () => {
       .sort({ date: sortby })
       .exec((err, doc) => {
         const mappedData = doc.map(
-          ({ _id, sapno, description, received, withdrawn, date }) => {
+          ({
+            _id,
+            sapno,
+            description,
+            location,
+            received,
+            withdrawn,
+            date,
+          }) => {
             return {
               _id,
               sapno,
               description,
+              location,
               received,
               withdrawn,
               date,
@@ -62,7 +72,7 @@ const InventoryList = () => {
 
   return (
     <div>
-      <h1>Enter the SAP No</h1>
+      <h1>Mechanical Shop</h1>
       <form onSubmit={(e) => submitHandler(e)}>
         <div className="form-group">
           <input
@@ -74,6 +84,9 @@ const InventoryList = () => {
             onChange={(e) => setSearch(e.target.value)}
             value={search}
           />
+          <small id="search" class="form-text text-muted">
+            Enter SAP No
+          </small>
         </div>
         <center>
           <button type="submit" className="btn btn-primary search-button">
@@ -94,14 +107,17 @@ const InventoryList = () => {
         />
       )}
 
-      <table className="table table-striped table-dark mt-4">
+      <table className="table table-striped table-dark mt-4" id="unique">
         <thead>
           <tr className="d-flex">
             <th scope="col" className="col-2">
               SAP No
             </th>
-            <th scope="col" className="col-5">
+            <th scope="col" className="col-4">
               Description
+            </th>
+            <th scope="col" className="col-1">
+              Location
             </th>
             <th scope="col" className="col-1">
               Received
@@ -137,6 +153,10 @@ const InventoryList = () => {
       </center>
 
       <center>{searchSuccess}</center>
+
+      {data.length !== 0 ? (
+        <GenerateReport name={search} data={data} inInventory={inInventory} />
+      ) : null}
 
       {searchSuccess === null && data.length !== 0 ? (
         <center>

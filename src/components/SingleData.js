@@ -4,6 +4,7 @@ const SingleData = ({
   _id,
   sapno,
   description,
+  location,
   received,
   withdrawn,
   date,
@@ -12,7 +13,8 @@ const SingleData = ({
   return (
     <tr className="d-flex" style={{ wordWrap: "break-word" }}>
       <td className="col-2">{sapno}</td>
-      <td className="col-5">{description} </td>
+      <td className="col-4">{description} </td>
+      <td className="col-1">{location} </td>
       <td className="col-1">{received}</td>
       <td className="col-1">{withdrawn}</td>
       <td className="col-2">{date}</td>

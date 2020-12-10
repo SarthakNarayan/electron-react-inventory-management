@@ -6,6 +6,7 @@ const db = window.require("electron").remote.getGlobal("database");
 const initialInput = {
   sapno: "",
   description: "",
+  location: "",
   received: 0,
   withdrawn: 0,
 };
@@ -24,6 +25,7 @@ const AddInventory = () => {
     db.insert({
       sapno: input.sapno,
       description: input.description,
+      location: input.location,
       received: input.received,
       withdrawn: input.withdrawn,
       date: dateSimple,
@@ -65,6 +67,19 @@ const AddInventory = () => {
             name="description"
             onChange={(e) => inputCapture(e)}
             value={input.description}
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="location">Location</label>
+          <input
+            type="text"
+            className="form-control"
+            id="location"
+            aria-describedby="location"
+            name="location"
+            onChange={(e) => inputCapture(e)}
+            value={input.location}
           />
         </div>
 
